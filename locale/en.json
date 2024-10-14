@@ -5,5 +5,7 @@
     "contact": "Contact",
     "login": "Login",
     "about": "About",
-    "logout": "Logout"
+    "logout": "Logout",
+    "signIn": "Sign in to your account",
+    "signUp": "Create an account"
 }
