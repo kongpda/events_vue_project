@@ -4,5 +4,6 @@
     "explorer": "Explorer",
     "contact": "Contact",
     "login": "Login",
-    "about": "About"
+    "about": "About",
+    "logout": "Logout"
 }

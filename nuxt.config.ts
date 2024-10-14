@@ -14,10 +14,11 @@ export default defineNuxtConfig({
   modules: ['@nuxtjs/i18n'],
   i18n: {
     locales: [
-      { code: 'en', language: 'en-US', file: 'locale/en-US.json' },
-      { code: 'kh', language: 'kh-KH', file: 'locale/kh-KH.json' }
+      { code: 'en', language: 'en-US', file: 'locale/en.json' },
+      { code: 'kh', language: 'kh-KH', file: 'locale/kh.json' }
     ],
-    defaultLocale: 'en',
-    strategy: 'prefix_and_default',
+    strategy: 'prefix_except_default',    defaultLocale: 'en',
+    detectBrowserLanguage: false,
+    vueI18n: "./i18n.config.ts",
   },
 })
