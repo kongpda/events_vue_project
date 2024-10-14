@@ -9,28 +9,31 @@
                     alt=""
                 />
             </NuxtLink>
-            <div class="flex lg:hidden">
-                <button
-                    type="button"
-                    class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-                    @click="mobileMenuOpen = true"
-                >
-                    <span class="sr-only">Open main menu</span>
-                    <Bars3Icon class="h-6 w-6" aria-hidden="true" />
-                </button>
-            </div>
-            <div class="hidden lg:flex lg:gap-x-12">
-                <NuxtLink
-                    v-for="item in navigation"
-                    :key="item.name"
-                    :to="item.to"
-                    class="text-sm font-semibold leading-6 text-gray-900"
-                >
-                    {{ item.name }}
-                </NuxtLink>
-                <NuxtLink to="/login" class="text-sm font-semibold leading-6 text-gray-900"
-                    >Log in <span aria-hidden="true">&rarr;</span></NuxtLink
-                >
+            <div class="flex items-center justify-between">
+                <div class="flex lg:hidden">
+                    <button
+                        type="button"
+                        class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+                        @click="mobileMenuOpen = true"
+                    >
+                        <span class="sr-only">Open main menu</span>
+                        <Bars3Icon class="h-6 w-6" aria-hidden="true" />
+                    </button>
+                </div>
+                <div class="hidden lg:flex lg:gap-x-12">
+                    <NuxtLink
+                        v-for="item in navigation"
+                        :key="item.name"
+                        :to="item.to"
+                        class="text-sm font-semibold leading-6 text-gray-900"
+                    >
+                        {{ $t(item.name) }}
+                    </NuxtLink>
+                    <NuxtLink to="/login" class="text-sm font-semibold leading-6 text-gray-900"
+                        >{{ $t('login') }} <span aria-hidden="true">&rarr;</span></NuxtLink
+                    >
+                </div>
+                <LanguageSwitcher />
             </div>
         </nav>
         <Dialog class="lg:hidden" @close="mobileMenuOpen = false" :open="mobileMenuOpen">
@@ -69,12 +72,8 @@
                                 to="/login"
                                 class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                             >
-                                Log in
+                                {{ $t('login') }}
                             </NuxtLink>
-                        </div>
-                        <div>
-                            <nuxt-link :to="switchLocalePath('en')">English</nuxt-link>
-                            <nuxt-link :to="switchLocalePath('kh')">Khmer</nuxt-link>
                         </div>
                     </div>
                 </div>
@@ -87,12 +86,13 @@
 import { ref } from 'vue'
 import { Dialog, DialogPanel } from '@headlessui/vue'
 import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
+import LanguageSwitcher from './LanguageSwitcher.vue'
 
 const navigation = [
-    { name: 'Home', to: '/' },
-    { name: 'Event', to: '/event' },
-    { name: 'Explorer', to: '/explorer' },
-    { name: 'Contact', to: '/contact' },
+    { name: 'home', to: '/' },
+    { name: 'event', to: '/event' },
+    { name: 'explorer', to: '/explorer' },
+    { name: 'contact', to: '/contact' },
 ]
 
 const mobileMenuOpen = ref(false)
