@@ -56,7 +56,6 @@
                 </div>
 
                 <div class="relative flex flex-col gap-6 lg:col-span-4">
-                    <OrganizerCard />
                     <ActionCard :actions="event.action_content || []" />
                 </div>
             </div>
