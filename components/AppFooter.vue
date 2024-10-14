@@ -4,11 +4,8 @@
         <h2 id="footer-heading" class="sr-only">Footer</h2>
         <div class="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-16 lg:px-8 lg:pt-12">
             <div class="flex w-full flex-row justify-between">
-                <img
-                    class="h-7"
-                    src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500"
-                    alt="Company name"
-                />
+                <CompanyLogo />
+
                 <div>
                     <ul role="list" class="space-x-4 inline-flex">
                         <li v-for="item in navigation.solutions" :key="item.name">
@@ -42,6 +39,7 @@
 
 <script setup>
 import LocLink from './LocLink.vue'
+import CompanyLogo from './logo/CompayLogo.vue'
 
 const navigation = {
     solutions: [
