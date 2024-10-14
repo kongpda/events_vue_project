@@ -1,7 +1,7 @@
 <template>
     <div class="bg-gray-500 px-6 py-20 sm:py-20 lg:px-8">
         <div class="mx-auto max-w-2xl text-center">
-            <h2 class="text-4xl font-bold tracking-tight text-gray-900">Explore Events</h2>
+            <h2 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">Explore Events</h2>
         </div>
     </div>
     <div class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
