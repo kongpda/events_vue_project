@@ -16,5 +16,10 @@ export default defineNuxtPlugin((nuxtApp) => {
             path: '/posts/:id',
             file: '~/pages/posts/[id].vue',
         })
+        pages.push({
+            name: 'event',
+            path: '/event',
+            file: '~/pages/event.vue',
+        })
     })
 })

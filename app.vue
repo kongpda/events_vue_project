@@ -1,7 +1,6 @@
 <template>
     <div>
         <NuxtLayout name="defaults">
-            <ButtonsBack v-if="!isHomePage">Back</ButtonsBack>
             <NuxtPage />
         </NuxtLayout>
     </div>
