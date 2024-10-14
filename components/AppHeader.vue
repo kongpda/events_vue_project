@@ -20,7 +20,7 @@
                         <Bars3Icon class="h-6 w-6" aria-hidden="true" />
                     </button>
                 </div>
-                <div class="hidden lg:flex lg:gap-x-12">
+                <div class="hidden lg:flex lg:gap-x-12 lg:items-center">
                     <LocLink
                         v-for="item in navigation"
                         :key="item.name"
@@ -29,11 +29,13 @@
                     >
                         {{ $t(item.name) }}
                     </LocLink>
-                    <LocLink :to="localePath('/login')" class="text-sm font-semibold leading-6 text-gray-900">
-                        {{ $t('login') }} <span aria-hidden="true">&rarr;</span>
-                    </LocLink>
+                    <LocLink
+                        :to="localePath('/login')"
+                        class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        >{{ $t('login') }}</LocLink
+                    >
                 </div>
-                <div class="hidden lg:flex lg:gap-x-12">
+                <div class="hidden lg:flex lg:gap-x-12 pl-2">
                     <LanguageSwitcher />
                 </div>
             </div>
