@@ -21,5 +21,15 @@ export default defineNuxtPlugin((nuxtApp) => {
             path: '/event',
             file: '~/pages/event.vue',
         })
+        pages.push({
+            name: 'explorer',
+            path: '/explorer',
+            file: '~/pages/explorer.vue',
+        })
+        pages.push({
+            name: 'contact',
+            path: '/contact',
+            file: '~/pages/contact.vue',
+        })
     })
 })
