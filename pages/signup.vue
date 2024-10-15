@@ -3,7 +3,7 @@
         <div class="sm:mx-auto sm:w-full sm:max-w-md">
             <CompanyLogo />
             <h2 class="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-                Sign up to your account
+                {{ $t('signUpToYourAccount') }}
             </h2>
         </div>
 

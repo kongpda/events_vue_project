@@ -44,8 +44,9 @@ import CompanyLogo from './logo/CompanyLogo.vue'
 const navigation = {
     solutions: [
         { name: 'Home', to: '/' },
-        { name: 'About', to: '/about' },
+        { name: 'Explorer', to: '/explorer' },
         { name: 'Contact', to: '/contact' },
+        { name: 'About', to: '/about' },
     ],
     social: [
         {

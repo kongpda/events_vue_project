@@ -36,18 +36,17 @@
             </div>
             <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
                 <div class="text-center">
-                    <h1 class="text-balance text-4xl font-bold tracking-tight text-white sm:text-6xl">
-                        We're changing the way people connect.
+                    <h1 class="text-balance text-4xl font-bold tracking-tight text-white sm:text-4xl">
+                        {{ $t('weAreChangingTheWayPeopleConnect') }}
                     </h1>
                     <p class="mt-6 text-lg leading-8 text-gray-300">
-                        Cupidatat minim id magna ipsum sint dolor qui. Sunt sit in quis cupidatat mollit aute velit. Et
-                        labore commodo nulla aliqua proident mollit ullamco exercitation tempor.
+                        {{ $t('heroSectionSubtitle') }}
                     </p>
                     <div class="mt-10 flex items-center justify-center gap-x-6">
                         <a
                             href="#featured-events"
                             class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400"
-                            >Featured Events</a
+                            >{{ $t('featuredEvents') }}</a
                         >
                     </div>
                 </div>

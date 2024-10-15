@@ -1,7 +1,7 @@
 <template>
-    <div class="bg-white rounded-lg shadow-md">
-        <h2 class="text-2xl font-bold mb-4 p-6">Event Organizer</h2>
-        <div class="flex flex-col gap-4 px-4 py-5 sm:p-6">
+    <div class="bg-white rounded-lg shadow-md mt-4">
+        <h2 class="text-2xl font-bold px-6 py-4">Event Organizer</h2>
+        <div class="flex flex-col gap-4 px-4 py-2 sm:p-6">
             <div class="flex flex-row items-center justify-between mb-4">
                 <div class="flex flex-row items-center">
                     <img :src="imageUrl" :alt="name" class="w-16 h-16 mr-4 rounded-full" />

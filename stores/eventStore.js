@@ -35,10 +35,14 @@ export const useEventStore = defineStore('eventStore', {
                     },
                 })
                 this.events = response.data.data
-                this.totalEvents = response.data.total
+                this.totalEvents = response.data.total || response.data.meta?.total || this.events.length
+                console.log('Fetched events:', this.events)
+                console.log('Total events:', this.totalEvents)
                 return this.events
             } catch (error) {
                 console.error('Error fetching events:', error)
+                this.events = []
+                this.totalEvents = 0
             } finally {
                 this.loading = false
             }

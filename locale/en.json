@@ -1,13 +1,24 @@
 {
+    "companyName": "Events Vue",
     "home": "Home",
     "event": "Event",
     "explorer": "Explorer",
     "contact": "Contact",
+    "contactUs": "Contact us",
     "login": "Login",
     "about": "About",
     "logout": "Logout",
     "signIn": "Sign in to your account",
-    "signUp": "Create an account",
+    "signInToYourAccount": "Sign in to your account",
+    "signUp": "Sign up",
+    "signUpToYourAccount": "Sign up to your account",
     "featuredEvents": "Featured Events",
-    "checkOutOurLatestEvents": "Check out our latest events."
+    "checkOutOurLatestEvents": "Check out our latest events.",
+    "viewAllEvents": "View all events",
+    "loadingEvents": "Loading events...",
+    "errorLoadingEvents": "Error loading events.",
+    "weAreChangingTheWayPeopleConnect": "We're changing the way people connect.",
+    "heroSectionSubtitle": "Cupidatat minim id magna ipsum sint dolor qui. Sunt sit in quis cupidatat mollit aute velit. Et labore commodo nulla aliqua proident mollit ullamco exercitation tempor.",
+    "whatWeDo": "What we do",
+    "whatWeDoSubtitle": "We have a range of events that are hosted by us. We have a range of events that are hosted by us."
 }
