@@ -1,33 +1,33 @@
 <template>
-    <article class="flex flex-col items-start justify-between">
-        <div class="relative w-full">
-            <img
-                :src="event.feature_image || 'https://placehold.co/800x450'"
-                alt="event image"
-                class="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
-            />
-            <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
-        </div>
-        <div class="max-w-xl">
-            <div class="mt-8 flex items-center gap-x-4 text-xs">
-                <time v-if="eventStartDate" :datetime="eventStartDate" class="text-gray-500">
-                    {{ formatDate(eventStartDate) }}
-                </time>
-                <span class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600">
-                    {{ event.category_id }}
-                </span>
+    <NuxtLink :to="`/event/${event.id}`" class="block">
+        <article
+            class="flex flex-col items-start justify-between rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+        >
+            <div class="relative w-full">
+                <img
+                    :src="event.feature_image || 'https://placehold.co/800x450'"
+                    alt="event image"
+                    class="aspect-[16/9] w-full bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
+                />
             </div>
-            <div class="group relative">
-                <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                    <NuxtLink :to="`/event/${event.id}`">
-                        <span class="absolute inset-0" />
+            <div class="p-6 w-full">
+                <div class="flex items-center gap-x-4 text-xs">
+                    <time v-if="eventStartDate" :datetime="eventStartDate" class="text-gray-500">
+                        {{ formatDate(eventStartDate) }}
+                    </time>
+                    <span class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600">
+                        {{ event.category_id }}
+                    </span>
+                </div>
+                <div class="mt-3">
+                    <h3 class="text-lg font-semibold leading-6 text-gray-900">
                         {{ event.title }}
-                    </NuxtLink>
-                </h3>
-                <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">{{ event.short_description }}</p>
+                    </h3>
+                    <p class="mt-3 line-clamp-3 text-sm leading-6 text-gray-600">{{ event.short_description }}</p>
+                </div>
             </div>
-        </div>
-    </article>
+        </article>
+    </NuxtLink>
 </template>
 
 <script setup>

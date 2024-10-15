@@ -61,15 +61,24 @@
 
                 <div class="relative flex flex-col gap-6 lg:col-span-4">
                     <ActionCard :actions="currentEvent.action_content || []" />
+
+                    <LocationCard />
                 </div>
             </div>
         </div>
     </div>
     <div v-else>Event not found</div>
 
-    <StickyBar v-if="currentEvent" class="flex flex-row items-center justify-between">
-        <p>{{ currentEvent.title }}</p>
-        <button>Buy Tickets</button>
+    <StickyBar v-if="currentEvent">
+        <div class="flex flex-row items-center justify-between">
+            <h3 class="text-lg font-semibold text-gray-900">{{ currentEvent.title }}</h3>
+            <button
+                type="button"
+                class="rounded-md bg-indigo-600 px-3 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-32"
+            >
+                Buy Tickets
+            </button>
+        </div>
     </StickyBar>
 </template>
 
@@ -77,7 +86,7 @@
 import { onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { storeToRefs } from 'pinia'
-import { useEventStore } from '@/store/eventStore'
+import { useEventStore } from '~/stores/eventStore'
 import { format, isValid, parseISO } from 'date-fns'
 
 // Components
@@ -85,6 +94,7 @@ import FeatureImage from '@/components/events/FeatureImage.vue'
 import OgCard from '@/components/cards/OgCard.vue'
 import ActionCard from '@/components/cards/ActionCard.vue'
 import StickyBar from '@/components/events/StickyBar.vue'
+import LocationCard from '@/components/cards/LocationCard.vue'
 
 const route = useRoute()
 const eventStore = useEventStore()

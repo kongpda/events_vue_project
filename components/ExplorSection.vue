@@ -25,7 +25,7 @@
 <script setup>
 import { ref, computed, watch, onMounted } from 'vue'
 import { storeToRefs } from 'pinia'
-import { useEventStore } from '@/store/eventStore'
+import { useEventStore } from '~/stores/eventStore'
 import ArticleCard from '@/components/ArticleCard.vue'
 
 const store = useEventStore()
@@ -39,27 +39,46 @@ const props = defineProps({
 })
 
 const currentPage = ref(1)
-const postsPerPage = 5
+const postsPerPage = 3
 
 // Update this computed property
 const paginatedEvents = computed(() => {
+    if (!events.value || events.value.length === 0) {
+        console.log('Events array is empty')
+        return []
+    }
     const start = (currentPage.value - 1) * postsPerPage
     const end = start + postsPerPage
+    console.log('Events:', events.value)
     return events.value.slice(start, end)
 })
 
-const totalPages = computed(() => Math.ceil(totalEvents.value / postsPerPage))
+const totalPages = computed(() => {
+    if (!totalEvents.value || isNaN(totalEvents.value)) {
+        console.log('Total events is not a valid number:', totalEvents.value)
+        return 0
+    }
+    const pages = Math.ceil(totalEvents.value / postsPerPage)
+    console.log('Total pages:', pages)
+    return pages
+})
 
 function changePage(pageNumber) {
     currentPage.value = pageNumber
 }
 
 async function fetchEvents() {
-    await store.fetchEvents({
-        page: currentPage.value,
-        limit: postsPerPage,
-        filter: props.selectedFilter,
-    })
+    try {
+        await store.fetchEvents({
+            page: currentPage.value,
+            limit: postsPerPage,
+            filter: props.selectedFilter,
+        })
+        console.log('Fetched events:', events.value)
+        console.log('Total events:', totalEvents.value)
+    } catch (error) {
+        console.error('Error fetching events:', error)
+    }
 }
 
 watch(
