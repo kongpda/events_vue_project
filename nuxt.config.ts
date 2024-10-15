@@ -10,14 +10,23 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  runtimeConfig: {
+    public: {
+      apiBaseUrl: process.env.API_BASE_URL
+    }
+  },
 
-  modules: ['@nuxtjs/i18n'],
+  modules: [
+    '@nuxtjs/i18n',
+    '@pinia/nuxt',
+  ],
   i18n: {
     locales: [
-      { code: 'en', language: 'en-US', file: 'locale/en-US.json' },
-      { code: 'kh', language: 'kh-KH', file: 'locale/kh-KH.json' }
+      { code: 'en', language: 'en-US', file: 'locale/en.json' },
+      { code: 'kh', language: 'kh-KH', file: 'locale/kh.json' }
     ],
-    defaultLocale: 'en',
-    strategy: 'prefix_and_default',
+    strategy: 'prefix_except_default',    defaultLocale: 'en',
+    detectBrowserLanguage: false,
+    vueI18n: "./i18n.config.ts",
   },
 })

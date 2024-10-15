@@ -1,0 +1,13 @@
+{
+    "home": "Home",
+    "event": "Event",
+    "explorer": "Explorer",
+    "contact": "Contact",
+    "login": "Login",
+    "about": "About",
+    "logout": "Logout",
+    "signIn": "Sign in to your account",
+    "signUp": "Create an account",
+    "featuredEvents": "Featured Events",
+    "checkOutOurLatestEvents": "Check out our latest events."
+}

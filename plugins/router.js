@@ -7,6 +7,16 @@ export default defineNuxtPlugin((nuxtApp) => {
             file: '~/pages/about.vue',
         })
         pages.push({
+            name: 'signup',
+            path: '/signup',
+            file: '~/pages/signup.vue',
+        })
+        pages.push({
+            name: 'login',
+            path: '/login',
+            file: '~/pages/login.vue',
+        })
+        pages.push({
             name: 'home',
             path: '/',
             file: '~/pages/index.vue',
