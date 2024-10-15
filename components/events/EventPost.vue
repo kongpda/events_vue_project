@@ -23,7 +23,9 @@
                     <h3 class="text-lg font-semibold leading-6 text-gray-900">
                         {{ event.title }}
                     </h3>
-                    <p class="mt-3 line-clamp-3 text-sm leading-6 text-gray-600">{{ event.short_description }}</p>
+                    <p class="mt-3 line-clamp-3 text-sm leading-6 text-gray-600">
+                        {{ stripHtml(event.content[0].data.description) }}
+                    </p>
                 </div>
             </div>
         </article>
@@ -70,5 +72,11 @@ const formatDate = (date) => {
         console.error('Error formatting date:', error, 'Date string:', date)
         return 'Error formatting date'
     }
+}
+
+const stripHtml = (html) => {
+    const tmp = document.createElement('DIV')
+    tmp.innerHTML = html
+    return tmp.textContent || tmp.innerText || ''
 }
 </script>
