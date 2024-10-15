@@ -9,19 +9,25 @@
                     :id="filter.id"
                     name="filter"
                     type="radio"
-                    :checked="filter.id === 'email'"
+                    :checked="filter.id === selectedFilter"
+                    @change="updateFilter(filter.id)"
                     class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                 />
-                <label :for="filter.id" class="ml-3 block text-sm font-medium leading-6 text-gray-900">{{
-                    filter.title
-                }}</label>
+                <label :for="filter.id" class="ml-3 block text-sm font-medium leading-6 text-gray-900">
+                    {{ filter.title }}
+                </label>
             </div>
         </div>
     </fieldset>
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import SearchInput from '@/components/input/search.vue'
+
+const emit = defineEmits(['update:selectedFilter'])
+
+const selectedFilter = ref('all')
 
 const filters = [
     { id: 'all', title: 'All' },
@@ -32,4 +38,9 @@ const filters = [
     { id: 'film', title: 'Film' },
     { id: 'other', title: 'Other' },
 ]
+
+function updateFilter(filterId) {
+    selectedFilter.value = filterId
+    emit('update:selectedFilter', filterId)
+}
 </script>

@@ -9,18 +9,21 @@
             <div class="col-span-1 bg-gray-200">
                 <div class="sticky top-0">
                     <div class="p-4">
-                        <FilterSection />
+                        <FilterSection v-model:selectedFilter="selectedFilter" />
                     </div>
                 </div>
             </div>
             <div class="col-span-3">
-                <ExplorSection />
+                <ExplorSection :selectedFilter="selectedFilter" />
             </div>
         </div>
     </div>
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import ExplorSection from '@/components/ExplorSection.vue'
 import FilterSection from '@/components/FilterSection.vue'
+
+const selectedFilter = ref('all')
 </script>

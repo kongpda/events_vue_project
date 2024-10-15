@@ -97,7 +97,6 @@ import LanguageSwitcher from './LanguageSwitcher.vue'
 import CompanyLogo from './logo/CompayLogo.vue'
 const navigation = [
     { name: 'home', to: '/' },
-    { name: 'event', to: '/event' },
     { name: 'explorer', to: '/explorer' },
     { name: 'contact', to: '/contact' },
 ]

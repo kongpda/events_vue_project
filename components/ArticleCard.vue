@@ -1,53 +1,74 @@
 <template>
-  <article class="relative isolate flex flex-col gap-8 lg:flex-row">
-    <div class="relative aspect-[16/9] sm:aspect-[2/1] lg:aspect-square lg:w-64 lg:shrink-0">
-      <img
-        :src="post.imageUrl"
-        alt=""
-        class="absolute inset-0 h-full w-full rounded-2xl bg-gray-50 object-cover"
-      />
-      <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
-    </div>
-    <div>
-      <div class="flex items-center gap-x-4 text-xs">
-        <time :datetime="post.datetime" class="text-gray-500">{{ post.date }}</time>
-        <a
-          :href="post.category.href"
-          class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
-        >{{ post.category.title }}</a>
-      </div>
-      <div class="group relative max-w-xl">
-        <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-          <a :href="post.href">
-            <span class="absolute inset-0" />
-            {{ post.title }}
-          </a>
-        </h3>
-        <p class="mt-5 text-sm leading-6 text-gray-600">{{ post.description }}</p>
-      </div>
-      <div class="mt-6 flex border-t border-gray-900/5 pt-6">
-        <div class="relative flex items-center gap-x-4">
-          <img :src="post.author.imageUrl" alt="" class="h-10 w-10 rounded-full bg-gray-50" />
-          <div class="text-sm leading-6">
-            <p class="font-semibold text-gray-900">
-              <a :href="post.author.href">
-                <span class="absolute inset-0" />
-                {{ post.author.name }}
-              </a>
-            </p>
-            <p class="text-gray-600">{{ post.author.role }}</p>
-          </div>
+    <article class="flex flex-col items-start justify-between">
+        <div class="relative w-full">
+            <img
+                :src="event.feature_image || 'https://placehold.co/800x450'"
+                alt="event image"
+                class="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
+            />
+            <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
         </div>
-      </div>
-    </div>
-  </article>
+        <div class="max-w-xl">
+            <div class="mt-8 flex items-center gap-x-4 text-xs">
+                <time v-if="eventStartDate" :datetime="eventStartDate" class="text-gray-500">
+                    {{ formatDate(eventStartDate) }}
+                </time>
+                <span class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600">
+                    {{ event.category_id }}
+                </span>
+            </div>
+            <div class="group relative">
+                <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                    <NuxtLink :to="`/event/${event.id}`">
+                        <span class="absolute inset-0" />
+                        {{ event.title }}
+                    </NuxtLink>
+                </h3>
+                <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">{{ event.short_description }}</p>
+            </div>
+        </div>
+    </article>
 </template>
 
 <script setup>
-defineProps({
-  post: {
-    type: Object,
-    required: true,
-  },
-});
+import { defineProps, computed } from 'vue'
+import { format, parse, parseISO } from 'date-fns'
+
+const props = defineProps({
+    event: {
+        type: Object,
+        required: true,
+    },
+})
+
+const eventStartDate = computed(() => {
+    // Check if event_date exists and is an array with at least one element
+    if (Array.isArray(props.event.event_date) && props.event.event_date.length > 0) {
+        return props.event.event_date[0].start_date
+    }
+    // If not, return null or a default date
+    return null
+})
+
+const formatDate = (date) => {
+    if (!date) return ''
+    try {
+        let parsedDate
+        if (date.includes('/')) {
+            // Parse date in DD/MM/YYYY format
+            parsedDate = parse(date, 'dd/MM/yyyy', new Date())
+        } else {
+            // Parse ISO format date
+            parsedDate = parseISO(date)
+        }
+        if (isNaN(parsedDate.getTime())) {
+            console.error('Invalid date string:', date)
+            return 'Invalid date'
+        }
+        return format(parsedDate, 'MMMM d, yyyy')
+    } catch (error) {
+        console.error('Error formatting date:', error, 'Date string:', date)
+        return 'Error formatting date'
+    }
+}
 </script>

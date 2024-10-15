@@ -2,54 +2,77 @@
     <div class="bg-white">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <div class="mx-auto max-w-2xl lg:max-w-4xl space-y-8">
-                <ArticleCard v-for="post in posts" :key="post.id" :post="post" />
+                <ArticleCard v-for="event in paginatedEvents" :key="event.id" :event="event" />
+            </div>
+            <!-- Pagination controls -->
+            <div v-if="totalPages > 1" class="mt-8 flex justify-center">
+                <button
+                    v-for="pageNumber in totalPages"
+                    :key="pageNumber"
+                    @click="changePage(pageNumber)"
+                    :class="[
+                        'px-3 py-1 mx-1 rounded',
+                        currentPage === pageNumber ? 'bg-indigo-600 text-white' : 'bg-gray-200',
+                    ]"
+                >
+                    {{ pageNumber }}
+                </button>
             </div>
         </div>
     </div>
 </template>
 
 <script setup>
-import ArticleCard from './ArticleCard.vue'
+import { ref, computed, watch, onMounted } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useEventStore } from '@/store/eventStore'
+import ArticleCard from '@/components/ArticleCard.vue'
 
-const posts = [
-    {
-        id: 1,
-        title: 'Boost your conversion rate',
-        href: '#',
-        description:
-            'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel iusto corrupti dicta laboris incididunt.',
-        imageUrl:
-            'https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3603&q=80',
-        date: 'Mar 16, 2020',
-        datetime: '2020-03-16',
-        category: { title: 'Marketing', href: '#' },
-        author: {
-            name: 'Michael Foster',
-            role: 'Co-Founder / CTO',
-            href: '#',
-            imageUrl:
-                'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-        },
+const store = useEventStore()
+const { events, loading, totalEvents } = storeToRefs(store)
+
+const props = defineProps({
+    selectedFilter: {
+        type: String,
+        default: 'all',
     },
-    {
-        id: 1,
-        title: 'Boost your conversion rate',
-        href: '#',
-        description:
-            'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel iusto corrupti dicta laboris incididunt.',
-        imageUrl:
-            'https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3603&q=80',
-        date: 'Mar 16, 2020',
-        datetime: '2020-03-16',
-        category: { title: 'Marketing', href: '#' },
-        author: {
-            name: 'Michael Foster',
-            role: 'Co-Founder / CTO',
-            href: '#',
-            imageUrl:
-                'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-        },
+})
+
+const currentPage = ref(1)
+const postsPerPage = 5
+
+// Update this computed property
+const paginatedEvents = computed(() => {
+    const start = (currentPage.value - 1) * postsPerPage
+    const end = start + postsPerPage
+    return events.value.slice(start, end)
+})
+
+const totalPages = computed(() => Math.ceil(totalEvents.value / postsPerPage))
+
+function changePage(pageNumber) {
+    currentPage.value = pageNumber
+}
+
+async function fetchEvents() {
+    await store.fetchEvents({
+        page: currentPage.value,
+        limit: postsPerPage,
+        filter: props.selectedFilter,
+    })
+}
+
+watch(
+    () => props.selectedFilter,
+    () => {
+        currentPage.value = 1
+        fetchEvents()
     },
-    // More posts...
-]
+)
+
+watch(currentPage, fetchEvents)
+
+onMounted(() => {
+    fetchEvents()
+})
 </script>

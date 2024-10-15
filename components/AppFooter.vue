@@ -44,7 +44,6 @@ import CompanyLogo from './logo/CompayLogo.vue'
 const navigation = {
     solutions: [
         { name: 'Home', to: '/' },
-        { name: 'Events', to: '/event' },
         { name: 'About', to: '/about' },
         { name: 'Contact', to: '/contact' },
     ],

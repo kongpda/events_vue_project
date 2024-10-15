@@ -10,8 +10,16 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  runtimeConfig: {
+    public: {
+      apiBaseUrl: process.env.API_BASE_URL
+    }
+  },
 
-  modules: ['@nuxtjs/i18n'],
+  modules: [
+    '@nuxtjs/i18n',
+    '@pinia/nuxt',
+  ],
   i18n: {
     locales: [
       { code: 'en', language: 'en-US', file: 'locale/en.json' },
