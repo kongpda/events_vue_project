@@ -39,7 +39,7 @@
 
 <script setup>
 import LocLink from './LocLink.vue'
-import CompanyLogo from './logo/CompayLogo.vue'
+import CompanyLogo from './logo/CompanyLogo.vue'
 
 const navigation = {
     solutions: [

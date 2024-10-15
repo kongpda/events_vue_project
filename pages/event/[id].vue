@@ -77,7 +77,7 @@
 import { onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { storeToRefs } from 'pinia'
-import { useEventStore } from '@/store/eventStore'
+import { useEventStore } from '~/stores/eventStore'
 import { format, isValid, parseISO } from 'date-fns'
 
 // Components

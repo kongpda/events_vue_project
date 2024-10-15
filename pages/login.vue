@@ -138,5 +138,5 @@
 </template>
 
 <script setup>
-import CompanyLogo from '@/components/logo/CompayLogo.vue'
+import CompanyLogo from '@/components/logo/CompanyLogo.vue'
 </script>

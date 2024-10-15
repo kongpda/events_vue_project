@@ -25,7 +25,7 @@
 <script setup>
 import { ref, computed, watch, onMounted } from 'vue'
 import { storeToRefs } from 'pinia'
-import { useEventStore } from '@/store/eventStore'
+import { useEventStore } from '~/stores/eventStore'
 import ArticleCard from '@/components/ArticleCard.vue'
 
 const store = useEventStore()

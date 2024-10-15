@@ -28,7 +28,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import EventPost from './EventPost.vue'
-import { useEventStore } from '@/store/eventStore'
+import { useEventStore } from '~/stores/eventStore'
 
 const props = defineProps({
     title: {

@@ -94,7 +94,7 @@ import { ref } from 'vue'
 import { Dialog, DialogPanel } from '@headlessui/vue'
 import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
 import LanguageSwitcher from './LanguageSwitcher.vue'
-import CompanyLogo from './logo/CompayLogo.vue'
+import CompanyLogo from './logo/CompanyLogo.vue'
 const navigation = [
     { name: 'home', to: '/' },
     { name: 'explorer', to: '/explorer' },

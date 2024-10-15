@@ -1,11 +1,7 @@
 <template>
     <div class="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-md">
-            <img
-                class="mx-auto h-10 w-auto"
-                src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
-                alt="Your Company"
-            />
+            <CompanyLogo />
             <h2 class="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
                 Sign up to your account
             </h2>
@@ -151,3 +147,7 @@
         </div>
     </div>
 </template>
+
+<script setup>
+import CompanyLogo from '@/components/logo/CompanyLogo.vue'
+</script>
